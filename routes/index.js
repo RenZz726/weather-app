@@ -7,6 +7,6 @@ const router = Router();
 
   router.use("/weather", handleWeather);
   router.use("/historical-weather", handleHistorical);
-  router.use("/city", handleCity);
+  router.use("/city", handleCity); 
 
 export default router;
