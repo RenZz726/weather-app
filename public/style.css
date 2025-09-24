@@ -1,4 +1,4 @@
-/* Reset some defaults */
+/* Reset some default styles */
 * {
   margin: 0;
   padding: 0;
@@ -7,79 +7,133 @@
 }
 
 body {
-  background-color: #121212;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(to bottom, #74ebd5, #ACB6E5);
   min-height: 100vh;
-}
-
-.app-container {
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
-}
-
-h1 {
-  margin-bottom: 20px;
-  font-weight: 400;
-  color: #ffffff;
-}
-
-.search {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: #333;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  gap: 10px;
   margin-bottom: 30px;
 }
 
-.search input {
+.search-bar input {
   padding: 10px 15px;
   border: none;
-  border-radius: 5px 0 0 5px;
+  border-radius: 25px;
+  width: 250px;
   outline: none;
-  width: 70%;
-  background-color: #1e1e1e;
-  color: #ffffff;
+  font-size: 16px;
 }
 
-.search button {
-  padding: 10px 15px;
+.search-bar input.searched {
+    border-radius: 20px 0 0 20px;
+    width: 300px;
+    height: 60px;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
   border: none;
-  background-color: #ff9800;
-  color: #000000;
-  border-radius: 0 5px 5px 0;
+  border-radius: 25px;
   cursor: pointer;
-  transition: background 0.3s;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
-.search button:hover {
-  background-color: #e68a00;
+.search-bar button:hover {
+  background-color: #357ABD;
 }
 
-.weather-card {
-  background-color: #1e1e1e;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+/* Weather Container */
+#container {
+  display: none;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 25px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  text-align: center;
+  margin-bottom: 30px;
+  min-width: 300px;
 }
 
-.weather-card h2 {
-  margin-bottom: 5px;
+#container h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
-.weather-card p {
+#container p {
+  font-size: 18px;
   margin: 5px 0;
-  font-size: 0.95rem;
 }
 
 .temp {
-  font-size: 2.5rem;
-  font-weight: 500;
-  display: block;
+  font-size: 36px;
+  font-weight: bold;
   margin: 10px 0;
 }
 
-sup {
-  font-size: 1rem;
+/* Historical Section */
+#historical {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+#historical input[type="date"] {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+#historical button {
+  padding: 8px 15px;
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#historical button:hover {
+  background-color: #d68910;
+}
+
+/* Historical Data Cards */
+#historicalDataByDate {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.day-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  text-align: center;
+  min-width: 120px;
+}
+
+.day-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.day-card p {
+  font-size: 16px;
+  color: #555;
 }
