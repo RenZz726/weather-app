@@ -17,6 +17,16 @@ export async function signIn (req, res) {
 
 export async function signUp (req, res) {
     
-    // code 
-    signUpUser();
+    const { username, password } = req.body;
+
+    if( !username || !password ) {
+        return res.json({ error: "Fill username & password" });
+    }
+    try {
+        const result = await signUpUser(username, password);
+        res.json(result);
+    } catch (err) {
+        res.status(400).json({ message: "Error in signup"})
+    }
+
 }

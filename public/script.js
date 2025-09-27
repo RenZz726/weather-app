@@ -1,4 +1,5 @@
 const container = document.getElementById("container");
+const cityInput = document.getElementById("cityInput");
 const weatherConditions = {
   0: "Clear ☀️",
   1: "Mainly clear 🌤️",
@@ -17,6 +18,12 @@ const weatherConditions = {
   82: "Heavy rain showers ⛈️"
 };
 
+cityInput.addEventListener("keydown", function(event) {
+  if (event.key == "Enter") {
+    event.preventDefault();
+    searchCityFromInput();
+  }
+})
 async function searchCity(city) {
   try {
     const response = await fetch(`http://localhost:5000/city/${encodeURIComponent(city)}`);

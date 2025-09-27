@@ -6,16 +6,16 @@ export async function signInUser (username, password) {
     try {
         db = await getDB();
         
-        const user = await db.get(`SELECT password FROM users WHERE username == ?`, [username]);
+        const user = await db.get(`SELECT password FROM users WHERE username = ?`, [username]);
         if (!user) {
             return { message: "User does not exist" }
         } 
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
-            return { message: "Login Successful" };
+            return { success: true, message: "Login Successful" };
         } else {
-            return { message: "Invalid username or password" }
+            return { success: false, message: "Invalid username or password" }
         }
 
     } catch (err) {
@@ -27,6 +27,25 @@ export async function signInUser (username, password) {
     
 }
 
-export async function signUpUser (req, res) {
-    // code 
+export async function signUpUser (username, password) {
+    let db;
+    try {
+        db = await getDB();
+
+        const existing = await db.get(`SELECT password FROM users WHERE username = ?`, [username]);
+        if(existing) {
+            return { message: "user already exists" };
+        }
+        
+        const hashed = await bcrypt.hash(password, 10);
+        
+        const insert = await db.run(`INSERT INTO users (username, password) VALUES (?, ?)`, [username, hashed]);
+        return { success: true, message: "SignUp Successful"}
+
+    } catch (err) {
+        console.error(`signup error: ${err}`);
+        return { success: false, message: "db error" };
+    } finally { 
+        if(db) await db.close();
+    }
 }
